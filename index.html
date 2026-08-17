@@ -151,8 +151,8 @@ section { padding:80px 20px; position:relative; }
 /* Testimonios */
 .testimonials { background:var(--c-bg); }
 .testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; }
-.testimonial-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:20px; padding:28px; transition:all 0.3s; }
-.testimonial-card:hover { background:rgba(255,255,255,0.04); transform:translateY(-4px); }
+.testimonial-card { background:rgba(0,0,0,0.45); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:28px; transition:all 0.3s; }
+.testimonial-card:hover { background:rgba(0,0,0,0.55); transform:translateY(-4px); }
 .testimonial-stars { color:#FFD700; font-size:1.1rem; margin-bottom:12px; }
 .testimonial-text { font-size:0.95rem; line-height:1.7; color:rgba(255,255,255,0.85); margin-bottom:16px; font-style:italic; }
 .testimonial-author { display:flex; align-items:center; gap:12px; }
@@ -256,8 +256,8 @@ footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); pa
 
 <!-- ========== CARRUSEL INVENTARIO ========== -->
 <section class="inventory" id="inventario" style="position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:url('fondo-inventario.jpg') center/cover no-repeat;opacity:0.08;z-index:0;"></div>
-  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,46,61,0.95) 0%,rgba(0,1,1,0.95) 100%);z-index:1;"></div>
+  <div style="position:absolute;inset:0;background:url('fondo-inventario.jpg') center/cover no-repeat;opacity:0.4;z-index:0;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,46,61,0.75) 0%,rgba(0,1,1,0.85) 100%);z-index:1;"></div>
   <div class="container" style="position:relative;z-index:2;">
     <h2 class="section-title aos">Inventario Destacado</h2>
     <p class="section-subtitle aos">Desliza para ver las unidades disponibles. Cada una con cotización directa por WhatsApp.</p>
@@ -358,8 +358,8 @@ footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); pa
 
 <!-- ========== TESTIMONIOS ========== -->
 <section class="testimonials" id="testimonios" style="position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:url('auto-carretera.jpg') center/cover no-repeat;opacity:0.05;z-index:0;"></div>
-  <div style="position:absolute;inset:0;background:var(--c-bg);opacity:0.94;z-index:1;"></div>
+  <div style="position:absolute;inset:0;background:url('fondo-testimonios.jpg') center 30% / cover no-repeat;opacity:0.3;z-index:0;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,1,1,0.88) 0%,rgba(12,46,61,0.9) 55%,rgba(0,1,1,0.88) 100%);z-index:1;"></div>
   <div class="container" style="position:relative;z-index:2;">
     <h2 class="section-title aos">Lo que dicen mis clientes</h2>
     <p class="section-subtitle aos">Historias reales de personas que ya estrenaron su Ford.</p>
@@ -554,8 +554,4 @@ window.addEventListener('scroll', () => {
   });
   track.addEventListener('mouseleave', () => { isDragging = false; });
 
-  window.addEventListener('resize', () => goTo(current));
-})();
-</script>
-</body>
-</html>
+  wi
