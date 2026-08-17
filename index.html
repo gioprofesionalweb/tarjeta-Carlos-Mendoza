@@ -5,6 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carlos Mendoza — Ejecutivo de Ventas Ford | AutoMax Premium</title>
 <meta name="description" content="Ejecutivo de ventas certificado Ford. Autos nuevos, financiamiento, permuta y seguros. Cotiza hoy mismo.">
+
+<!-- META TAGS PARA COMPARTIR EN REDES SOCIALES (Open Graph) -->
+<!-- IMPORTANTE: Reemplaza "tuusuario" y "tarjeta-carlos-mendoza" -->
+<!-- por tu usuario de GitHub y el nombre de tu repositorio. -->
+<!-- Ejemplo: https://juanperez.github.io/tarjeta-carlos-mendoza/ -->
+<meta property="og:title" content="Carlos Mendoza — Ejecutivo de Ventas Ford">
+<meta property="og:description" content="Autos nuevos Ford 2026. Financiamiento, permuta y seguros. Cotiza por WhatsApp en minutos.">
+<meta property="og:image" content="https://github.com/TU-USUARIO/tarjeta-carlos-mendoza">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://github.com/TU-USUARIO/tarjeta-carlos-mendoza">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Carlos Mendoza — Ejecutivo de Ventas Ford">
+<meta name="twitter:description" content="Autos nuevos Ford 2026. Financiamiento, permuta y seguros. Cotiza por WhatsApp en minutos.">
+<meta name="twitter:image" content="https://github.com/TU-USUARIO/tarjeta-carlos-mendoza">
+
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="asesor.jpg">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ================================================================
@@ -219,7 +242,9 @@ footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); pa
 </section>
 
 <!-- ========== CARRUSEL INVENTARIO ========== -->
-<section class="inventory" id="inventario">
+<section class="inventory" id="inventario" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:url('auto1.jpg') center/cover no-repeat;opacity:0.08;z-index:0;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,46,61,0.95) 0%,rgba(0,1,1,0.95) 100%);z-index:1;"></div>
   <div class="container">
     <h2 class="section-title aos">Inventario Destacado</h2>
     <p class="section-subtitle aos">Desliza para ver las unidades disponibles. Cada una con cotización directa por WhatsApp.</p>
@@ -302,6 +327,7 @@ footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); pa
     </div>
     <div class="carousel-dots" id="carouselDots"></div>
   </div>
+  </div>
 </section>
 
 <!-- ========== CREDENCIALES ========== -->
@@ -357,7 +383,10 @@ footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); pa
 </section>
 
 <!-- ========== FOOTER ========== -->
-<footer>
+<footer style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:url('auto-carretera.jpg') center/cover no-repeat;opacity:0.06;z-index:0;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,1,1,0.92) 0%,rgba(12,46,61,0.95) 100%);z-index:1;"></div>
+  <div style="position:relative;z-index:2;">
   <div class="footer-brand">AutoMax Premium — Ford</div>
   <div class="footer-info">
     Av. Insurgentes Sur 1234, CDMX · Lunes a Sábado 9:00 - 19:00<br>
