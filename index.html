@@ -239,8 +239,10 @@ footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); pa
 </section>
 
 <!-- ========== SERVICIOS ========== -->
-<section class="services" id="servicios">
-  <div class="container">
+<section class="services" id="servicios" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:url('agencia.jpg') center/cover no-repeat;opacity:0.07;z-index:0;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--c-bg) 0%,var(--c-dark) 100%);opacity:0.92;z-index:1;"></div>
+  <div class="container" style="position:relative;z-index:2;">
     <h2 class="section-title aos">Servicios que ofrezco</h2>
     <p class="section-subtitle aos">Todo lo que necesitas para estrenar tu Ford nuevo, en un solo lugar.</p>
     <div class="services-grid">
@@ -355,8 +357,10 @@ footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); pa
 </section>
 
 <!-- ========== TESTIMONIOS ========== -->
-<section class="testimonials" id="testimonios">
-  <div class="container">
+<section class="testimonials" id="testimonios" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:url('auto-carretera.jpg') center/cover no-repeat;opacity:0.05;z-index:0;"></div>
+  <div style="position:absolute;inset:0;background:var(--c-bg);opacity:0.94;z-index:1;"></div>
+  <div class="container" style="position:relative;z-index:2;">
     <h2 class="section-title aos">Lo que dicen mis clientes</h2>
     <p class="section-subtitle aos">Historias reales de personas que ya estrenaron su Ford.</p>
     <div class="testimonials-grid">
@@ -483,7 +487,7 @@ window.addEventListener('scroll', () => {
   const cards = track.children;
   const total = cards.length;
   let current = 0;
-  let startX = 0, isDragging = false;
+  let startX = 0, startY = 0, isDragging = false, isHorizontalSwipe = null;
 
   // Create dots
   for (let i = 0; i < total; i++) {
@@ -508,13 +512,35 @@ window.addEventListener('scroll', () => {
   nextBtn.addEventListener('click', () => goTo(current + 1));
 
   // Touch / Swipe
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; });
-  track.addEventListener('touchmove', e => { if (!isDragging) return; e.preventDefault(); });
+  // IMPORTANTE: no bloqueamos el scroll vertical de la página. Solo
+  // interceptamos el gesto cuando es claramente horizontal (mover el
+  // carrusel); si el dedo se mueve más en vertical, dejamos que la
+  // página haga scroll normalmente.
+  track.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isDragging = true;
+    isHorizontalSwipe = null;
+  }, { passive: true });
+
+  track.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    const dx = e.touches[0].clientX - startX;
+    const dy = e.touches[0].clientY - startY;
+    if (isHorizontalSwipe === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+      isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
+    }
+    if (isHorizontalSwipe) e.preventDefault();
+  }, { passive: false });
+
   track.addEventListener('touchend', e => {
     if (!isDragging) return;
     isDragging = false;
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+    if (isHorizontalSwipe) {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+    }
+    isHorizontalSwipe = null;
   });
 
   // Mouse drag
