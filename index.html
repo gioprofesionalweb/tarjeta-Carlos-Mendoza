@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carlos Mendoza — Ejecutivo de Ventas Ford | AutoMax Premium</title>
+<meta name="description" content="Ejecutivo de ventas certificado Ford. Autos nuevos, financiamiento, permuta y seguros. Cotiza hoy mismo.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   PLANTILLA EDITABLE — Cambia estas variables para otras marcas
+   ================================================================ */
+:root {
+  --c-bg:      #000101;
+  --c-dark:    #0C2E3D;
+  --c-primary: #186784;
+  --c-accent:  #9A7C65;
+  --c-light:   #C0A088;
+  --c-cream:   #DAC6B6;
+  --c-white:   #FFFFFF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--c-bg); color:var(--c-white); overflow-x:hidden; }
+
+/* Animaciones */
+@keyframes fadeInUp { from{opacity:0;transform:translateY(60px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInScale { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(24,103,132,0.7)} 50%{box-shadow:0 0 0 20px rgba(24,103,132,0)} }
+@keyframes glow { 0%,100%{box-shadow:0 0 20px rgba(24,103,132,0.3)} 50%{box-shadow:0 0 40px rgba(24,103,132,0.6)} }
+@keyframes bounceArrow { 0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)} 40%{transform:translateX(-50%) translateY(-15px)} 60%{transform:translateX(-50%) translateY(-7px)} }
+
+.aos { opacity:0; transform:translateY(50px); transition:all 0.8s cubic-bezier(0.16,1,0.3,1); }
+.aos.visible { opacity:1; transform:translateY(0); }
+.d1 { transition-delay:0.1s; }
+.d2 { transition-delay:0.2s; }
+.d3 { transition-delay:0.3s; }
+.d4 { transition-delay:0.4s; }
+
+/* Hero */
+.hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.hero-bg { position:absolute; top:0; left:0; width:100%; height:120%; background:url('agencia.jpg') center/cover no-repeat; will-change:transform; z-index:0; }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(12,46,61,0.88) 0%,rgba(0,1,1,0.94) 100%); z-index:1; }
+.hero-content { position:relative; z-index:2; text-align:center; padding:2rem; max-width:600px; }
+.badge { display:inline-flex; align-items:center; gap:8px; background:rgba(24,103,132,0.2); border:1px solid rgba(24,103,132,0.4); backdrop-filter:blur(10px); padding:8px 20px; border-radius:50px; font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--c-cream); margin-bottom:2rem; animation:fadeInUp 1s ease-out; }
+.badge-dot { width:8px; height:8px; background:#00C853; border-radius:50%; animation:pulse 2s infinite; }
+.profile-wrap { position:relative; width:180px; height:180px; margin:0 auto 2rem; animation:fadeInScale 1s ease-out 0.2s both; }
+.profile-wrap::before { content:''; position:absolute; inset:-5px; border-radius:50%; background:linear-gradient(135deg,var(--c-primary),var(--c-accent)); animation:glow 3s infinite; z-index:-1; }
+.profile-img { width:100%; height:100%; border-radius:50%; object-fit:cover; border:4px solid var(--c-bg); }
+.hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:800; line-height:1.1; margin-bottom:0.5rem; animation:fadeInUp 1s ease-out 0.4s both; background:linear-gradient(135deg,#fff 0%,var(--c-cream) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero .subtitle { font-size:1.1rem; font-weight:500; color:var(--c-primary); margin-bottom:0.5rem; animation:fadeInUp 1s ease-out 0.5s both; }
+.hero .location { font-size:0.9rem; color:var(--c-light); margin-bottom:2rem; animation:fadeInUp 1s ease-out 0.6s both; }
+
+/* Botones */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,var(--c-primary),#0C5C7A); color:white; font-weight:700; font-size:1rem; padding:16px 32px; border-radius:14px; text-decoration:none; border:none; cursor:pointer; transition:all 0.3s ease; position:relative; overflow:hidden; }
+.btn::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); transition:left 0.5s; }
+.btn:hover::before { left:100%; }
+.btn:hover { transform:translateY(-3px); box-shadow:0 20px 40px rgba(24,103,132,0.4); }
+.btn-block { width:100%; }
+.btn-lg { font-size:1.1rem; padding:18px 40px; }
+
+.scroll-indicator { position:absolute; bottom:30px; left:50%; z-index:2; animation:bounceArrow 2s infinite; cursor:pointer; }
+.scroll-indicator svg { width:32px; height:32px; color:var(--c-cream); opacity:0.6; }
+
+/* Floating CTA */
+.floating-cta { position:fixed; bottom:24px; right:24px; z-index:1000; transform:translateY(150px); transition:transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.floating-cta.show { transform:translateY(0); }
+.floating-cta a { display:flex; align-items:center; gap:10px; background:#25D366; color:white; font-weight:700; padding:14px 24px; border-radius:50px; text-decoration:none; box-shadow:0 10px 30px rgba(37,211,102,0.4); animation:pulse 2s infinite; font-size:0.9rem; }
+.floating-cta a:hover { transform:scale(1.05); }
+
+/* Secciones */
+section { padding:80px 20px; position:relative; }
+.container { max-width:1100px; margin:0 auto; }
+.section-title { font-size:clamp(1.8rem,4vw,2.5rem); font-weight:800; margin-bottom:1rem; text-align:center; }
+.section-subtitle { text-align:center; color:var(--c-light); font-size:1rem; margin-bottom:3rem; max-width:500px; margin-left:auto; margin-right:auto; }
+
+/* Servicios */
+.services { background:linear-gradient(180deg,var(--c-bg) 0%,var(--c-dark) 100%); }
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+.service-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(10px); border-radius:20px; padding:32px 24px; text-align:center; transition:all 0.4s cubic-bezier(0.16,1,0.3,1); }
+.service-card:hover { transform:translateY(-8px); background:rgba(24,103,132,0.1); border-color:rgba(24,103,132,0.3); box-shadow:0 20px 40px rgba(0,0,0,0.3); }
+.service-icon { width:64px; height:64px; margin:0 auto 16px; background:linear-gradient(135deg,var(--c-primary),var(--c-dark)); border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; transition:transform 0.3s; }
+.service-card:hover .service-icon { transform:scale(1.1) rotate(-5deg); }
+.service-card h3 { font-size:1.1rem; font-weight:700; margin-bottom:8px; }
+.service-card p { font-size:0.85rem; color:var(--c-light); line-height:1.5; }
+
+/* Carrusel */
+.inventory { background:var(--c-dark); }
+.carousel-wrapper { position:relative; overflow:hidden; padding:0 40px; }
+.carousel-track { display:flex; gap:24px; transition:transform 0.5s cubic-bezier(0.16,1,0.3,1); cursor:grab; }
+.carousel-track:active { cursor:grabbing; }
+.carousel-card { min-width:320px; max-width:320px; background:rgba(0,0,0,0.3); border-radius:24px; overflow:hidden; border:1px solid rgba(255,255,255,0.05); transition:all 0.4s cubic-bezier(0.16,1,0.3,1); flex-shrink:0; }
+.carousel-card:hover { transform:translateY(-10px); box-shadow:0 30px 60px rgba(0,0,0,0.4); border-color:rgba(24,103,132,0.3); }
+.carousel-img-wrap { position:relative; height:200px; overflow:hidden; }
+.carousel-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.carousel-card:hover .carousel-img-wrap img { transform:scale(1.1); }
+.carousel-badge { position:absolute; top:14px; left:14px; background:linear-gradient(135deg,var(--c-primary),var(--c-dark)); padding:5px 12px; border-radius:8px; font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; }
+.carousel-info { padding:22px; }
+.carousel-info h3 { font-size:1.15rem; font-weight:700; margin-bottom:4px; }
+.carousel-specs { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+.carousel-specs span { font-size:0.7rem; color:var(--c-light); background:rgba(255,255,255,0.05); padding:3px 8px; border-radius:6px; }
+.carousel-price { font-size:1.35rem; font-weight:800; color:var(--c-cream); margin-bottom:14px; }
+.carousel-nav { display:flex; justify-content:center; gap:12px; margin-top:30px; }
+.carousel-btn { width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); color:white; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s; }
+.carousel-btn:hover { background:var(--c-primary); border-color:var(--c-primary); transform:scale(1.1); }
+.carousel-dots { display:flex; justify-content:center; gap:8px; margin-top:16px; }
+.carousel-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); cursor:pointer; transition:all 0.3s; border:none; }
+.carousel-dot.active { background:var(--c-primary); width:24px; border-radius:4px; }
+
+/* Credenciales */
+.credentials { background:linear-gradient(135deg,var(--c-primary),var(--c-dark)); position:relative; overflow:hidden; }
+.credentials::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle,rgba(255,255,255,0.03) 1px,transparent 1px); background-size:40px 40px; opacity:0.5; }
+.stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; position:relative; z-index:1; }
+.stat-item { text-align:center; }
+.stat-number { font-size:clamp(2.5rem,6vw,4rem); font-weight:900; line-height:1; margin-bottom:8px; background:linear-gradient(135deg,#fff,var(--c-cream)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.stat-label { font-size:0.85rem; color:rgba(255,255,255,0.7); font-weight:500; }
+
+/* Testimonios */
+.testimonials { background:var(--c-bg); }
+.testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; }
+.testimonial-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:20px; padding:28px; transition:all 0.3s; }
+.testimonial-card:hover { background:rgba(255,255,255,0.04); transform:translateY(-4px); }
+.testimonial-stars { color:#FFD700; font-size:1.1rem; margin-bottom:12px; }
+.testimonial-text { font-size:0.95rem; line-height:1.7; color:rgba(255,255,255,0.85); margin-bottom:16px; font-style:italic; }
+.testimonial-author { display:flex; align-items:center; gap:12px; }
+.testimonial-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--c-primary),var(--c-accent)); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9rem; }
+.testimonial-name { font-weight:600; font-size:0.9rem; }
+.testimonial-role { font-size:0.75rem; color:var(--c-light); }
+
+/* CTA Final Parallax */
+.final-cta { position:relative; min-height:500px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.final-cta-bg { position:absolute; top:0; left:0; width:100%; height:120%; background:url('auto-carretera.jpg') center/cover no-repeat; will-change:transform; }
+.final-cta-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,1,1,0.85) 0%,rgba(12,46,61,0.9) 100%); }
+.final-cta-content { position:relative; z-index:2; text-align:center; max-width:600px; padding:2rem; }
+.final-cta h2 { font-size:clamp(2rem,5vw,3rem); font-weight:800; margin-bottom:1rem; }
+.final-cta p { color:var(--c-light); font-size:1.1rem; margin-bottom:2rem; }
+
+/* Footer */
+footer { background:var(--c-bg); border-top:1px solid rgba(255,255,255,0.05); padding:40px 20px; text-align:center; }
+.footer-brand { font-size:1.2rem; font-weight:800; margin-bottom:8px; color:var(--c-cream); }
+.footer-info { font-size:0.85rem; color:var(--c-light); margin-bottom:16px; line-height:1.8; }
+.footer-socials { display:flex; justify-content:center; gap:16px; margin-bottom:20px; }
+.footer-socials a { width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; color:var(--c-cream); text-decoration:none; transition:all 0.3s; border:1px solid rgba(255,255,255,0.1); }
+.footer-socials a:hover { background:var(--c-primary); transform:translateY(-3px); border-color:var(--c-primary); }
+.footer-copy { font-size:0.75rem; color:rgba(255,255,255,0.3); }
+
+/* Responsive */
+@media(max-width:768px){
+  .stats-grid { grid-template-columns:1fr; gap:30px; }
+  .floating-cta a span { display:none; }
+  .floating-cta a { padding:14px; border-radius:50%; }
+  section { padding:60px 16px; }
+  .carousel-wrapper { padding:0 10px; }
+  .carousel-card { min-width:280px; max-width:280px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     GUÍA RÁPIDA DE PERSONALIZACIÓN
+     ================================================================
+  1. IMÁGENES: Sube estas fotos junto al index.html en tu repo:
+     • asesor.jpg         → Foto del ejecutivo (circular)
+     • agencia.jpg        → Foto de la agencia (fondo del hero)
+     • auto-carretera.jpg → Fondo de auto en carretera (sección CTA final)
+     • auto1.jpg          → Foto del inventario #1
+     • auto2.jpg          → Foto del inventario #2
+     • auto3.jpg          → Foto del inventario #3
+     • auto4.jpg          → Foto del inventario #4
+
+  2. REDES SOCIALES: En el footer, cambia los href="#" por tus links.
+
+  3. COLORES: Modifica las variables CSS en :root arriba.
+
+  4. INVENTARIO: Busca la sección CARRUSEL. Cada .carousel-card
+     es un auto. Copia/pega para agregar más. Cambia foto, nombre,
+     specs, precio y el link de WhatsApp.
+
+  5. CONTACTO: Busca "5512345678" y reemplaza por tu WhatsApp.
+     Busca "55 1234 5678" para teléfono.
+     Busca "carlos.mendoza@automax.com" para email.
+  ================================================================ -->
+
+<!-- ========== HERO PARALLAX ========== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="badge"><span class="badge-dot"></span>Ejecutivo Certificado Ford</div>
+    <div class="profile-wrap">
+      <img src="asesor.jpg" alt="Carlos Mendoza" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face'">
+    </div>
+    <h1>Carlos Mendoza</h1>
+    <p class="subtitle">Ejecutivo de Ventas Senior</p>
+    <p class="location">AutoMax Premium — Ciudad de México</p>
+    <a href="https://wa.me/5215512345678?text=Hola%20Carlos%2C%20vi%20tu%20tarjeta%20digital%20y%20quiero%20informaci%C3%B3n%20sobre%20autos%20Ford%20nuevos" target="_blank" class="btn">
+      <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Cotizar ahora por WhatsApp
+    </a>
+  </div>
+  <div class="scroll-indicator" onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+  </div>
+</section>
+
+<!-- ========== SERVICIOS ========== -->
+<section class="services" id="servicios">
+  <div class="container">
+    <h2 class="section-title aos">Servicios que ofrezco</h2>
+    <p class="section-subtitle aos">Todo lo que necesitas para estrenar tu Ford nuevo, en un solo lugar.</p>
+    <div class="services-grid">
+      <div class="service-card aos d1"><div class="service-icon">🚗</div><h3>Autos Nuevos Ford</h3><p>Catálogo completo de modelos 2026 con entrega inmediata y precios especiales.</p></div>
+      <div class="service-card aos d2"><div class="service-icon">💰</div><h3>Financiamiento</h3><p>Crédito directo Ford Credit, bancarios y arrendamiento. Aprobación en 24 hrs.</p></div>
+      <div class="service-card aos d3"><div class="service-icon">🔄</div><h3>Permuta</h3><p>Valuamos tu auto al mejor precio de mercado y lo aplicamos a tu nuevo Ford.</p></div>
+      <div class="service-card aos d4"><div class="service-icon">🛡️</div><h3>Seguros</h3><p>Cobertura amplia y a tu medida con las mejores aseguradoras del país.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CARRUSEL INVENTARIO ========== -->
+<section class="inventory" id="inventario">
+  <div class="container">
+    <h2 class="section-title aos">Inventario Destacado</h2>
+    <p class="section-subtitle aos">Desliza para ver las unidades disponibles. Cada una con cotización directa por WhatsApp.</p>
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- AUTO 1 — Ford Raptor -->
+        <div class="carousel-card aos d1">
+          <div class="carousel-img-wrap">
+            <img src="auto1.jpg" alt="Ford Raptor" onerror="this.src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&h=400&fit=crop'">
+            <span class="carousel-badge">Disponible</span>
+          </div>
+          <div class="carousel-info">
+            <h3>Ford Raptor 2026</h3>
+            <div class="carousel-specs"><span>3.5L EcoBoost</span><span>4x4</span><span>0 km</span></div>
+            <p class="carousel-price">$1,580,000 MXN</p>
+            <a href="https://wa.me/5215512345678?text=Hola%20Carlos%2C%20me%20interesa%20la%20Ford%20Raptor%202026" target="_blank" class="btn btn-block" style="padding:10px;font-size:0.85rem;">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar este auto
+            </a>
+          </div>
+        </div>
+
+        <!-- AUTO 2 — Ford Territory -->
+        <div class="carousel-card aos d2">
+          <div class="carousel-img-wrap">
+            <img src="auto2.jpg" alt="Ford Territory" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop'">
+            <span class="carousel-badge">SUV</span>
+          </div>
+          <div class="carousel-info">
+            <h3>Ford Territory 2026</h3>
+            <div class="carousel-specs"><span>1.8L Turbo</span><span>Automática</span><span>0 km</span></div>
+            <p class="carousel-price">$520,000 MXN</p>
+            <a href="https://wa.me/5215512345678?text=Hola%20Carlos%2C%20me%20interesa%20la%20Ford%20Territory%202026" target="_blank" class="btn btn-block" style="padding:10px;font-size:0.85rem;">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar este auto
+            </a>
+          </div>
+        </div>
+
+        <!-- AUTO 3 — Ford Territory Titanium -->
+        <div class="carousel-card aos d3">
+          <div class="carousel-img-wrap">
+            <img src="auto3.jpg" alt="Ford Territory Titanium" onerror="this.src='https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&h=400&fit=crop'">
+            <span class="carousel-badge">Titanium</span>
+          </div>
+          <div class="carousel-info">
+            <h3>Ford Territory Titanium 2026</h3>
+            <div class="carousel-specs"><span>1.8L Turbo</span><span>Automática</span><span>0 km</span></div>
+            <p class="carousel-price">$590,000 MXN</p>
+            <a href="https://wa.me/5215512345678?text=Hola%20Carlos%2C%20me%20interesa%20la%20Ford%20Territory%20Titanium%202026" target="_blank" class="btn btn-block" style="padding:10px;font-size:0.85rem;">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar este auto
+            </a>
+          </div>
+        </div>
+
+        <!-- AUTO 4 — Ford Mustang -->
+        <div class="carousel-card aos d4">
+          <div class="carousel-img-wrap">
+            <img src="auto4.jpg" alt="Ford Mustang" onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&h=400&fit=crop'">
+            <span class="carousel-badge">Deportivo</span>
+          </div>
+          <div class="carousel-info">
+            <h3>Ford Mustang GT 2026</h3>
+            <div class="carousel-specs"><span>5.0L V8</span><span>Automático</span><span>0 km</span></div>
+            <p class="carousel-price">$1,250,000 MXN</p>
+            <a href="https://wa.me/5215512345678?text=Hola%20Carlos%2C%20me%20interesa%20el%20Ford%20Mustang%20GT%202026" target="_blank" class="btn btn-block" style="padding:10px;font-size:0.85rem;">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar este auto
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="prevBtn" aria-label="Anterior"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+      <button class="carousel-btn" id="nextBtn" aria-label="Siguiente"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<!-- ========== CREDENCIALES ========== -->
+<section class="credentials" id="credenciales">
+  <div class="container">
+    <h2 class="section-title aos">¿Por qué elegirme?</h2>
+    <p class="section-subtitle aos">Resultados que hablan por sí solos. Tu confianza es mi mejor referencia.</p>
+    <div class="stats-grid">
+      <div class="stat-item aos d1"><div class="stat-number" data-target="8">0</div><div class="stat-label">Años de experiencia Ford</div></div>
+      <div class="stat-item aos d2"><div class="stat-number" data-target="500">0</div><div class="stat-label">Autos entregados</div></div>
+      <div class="stat-item aos d3"><div class="stat-number" data-target="98">0</div><div class="stat-label">% Clientes satisfechos</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIOS ========== -->
+<section class="testimonials" id="testimonios">
+  <div class="container">
+    <h2 class="section-title aos">Lo que dicen mis clientes</h2>
+    <p class="section-subtitle aos">Historias reales de personas que ya estrenaron su Ford.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card aos d1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Carlos me consiguió el mejor financiamiento para mi Territory. El proceso fue transparente, rápido y sin complicaciones. ¡Lo recomiendo al 100%!"</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">AR</div><div><div class="testimonial-name">Alejandro Ramírez</div><div class="testimonial-role">Ford Territory 2025</div></div></div>
+      </div>
+      <div class="testimonial-card aos d2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Me ayudó con la permuta de mi auto viejo y la entrega de la Raptor fue impecable. Un verdadero profesional que conoce cada detalle de la marca."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">MG</div><div><div class="testimonial-name">Mariana Gómez</div><div class="testimonial-role">Ford Raptor 2026</div></div></div>
+      </div>
+      <div class="testimonial-card aos d3">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Desde la cotización hasta la entrega, Carlos estuvo al pendiente de todo. Incluso me ayudó con el seguro y las placas. Servicio VIP garantizado."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">RL</div><div><div class="testimonial-name">Roberto López</div><div class="testimonial-role">Ford Mustang GT 2025</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA FINAL PARALLAX ========== -->
+<section class="final-cta" id="contacto">
+  <div class="final-cta-bg" id="ctaBg"></div>
+  <div class="final-cta-overlay"></div>
+  <div class="final-cta-content">
+    <h2 class="aos">¿Listo para estrenar tu Ford?</h2>
+    <p class="aos">Escríbeme ahora y recibe una cotización personalizada en menos de 10 minutos. Sin compromiso.</p>
+    <a href="https://wa.me/5215512345678?text=Hola%20Carlos%2C%20vi%20tu%20tarjeta%20digital%20y%20quiero%20una%20cotizaci%C3%B3n%20personalizada" target="_blank" class="btn btn-lg aos">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-brand">AutoMax Premium — Ford</div>
+  <div class="footer-info">
+    Av. Insurgentes Sur 1234, CDMX · Lunes a Sábado 9:00 - 19:00<br>
+    <a href="tel:5512345678" style="color:var(--c-cream);text-decoration:none;">55 1234 5678</a> ·
+    <a href="mailto:carlos.mendoza@automax.com" style="color:var(--c-cream);text-decoration:none;">carlos.mendoza@automax.com</a>
+  </div>
+  <div class="footer-socials">
+    <!-- CAMBIA LOS href="#" POR TUS LINKS REALES -->
+    <a href="https://facebook.com/tu-pagina" target="_blank" aria-label="Facebook"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://instagram.com/tu-perfil" target="_blank" aria-label="Instagram"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://tiktok.com/@tu-usuario" target="_blank" aria-label="TikTok"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+  </div>
+  <div class="footer-copy">© 2026 AutoMax Premium. Todos los derechos reservados. Ford es marca registrada.</div>
+</footer>
+
+<!-- ========== FLOATING CTA ========== -->
+<div class="floating-cta" id="floatingCta">
+  <a href="https://wa.me/5215512345678?text=Hola%20Carlos%2C%20vi%20tu%20tarjeta%20digital" target="_blank">
+    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>Cotizar ahora</span>
+  </a>
+</div>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+// --- PARALLAX ---
+const heroBg = document.getElementById('heroBg');
+const ctaBg  = document.getElementById('ctaBg');
+window.addEventListener('scroll', () => {
+  const s = window.pageYOffset;
+  if (heroBg) heroBg.style.transform = 'translateY(' + (s * 0.4) + 'px)';
+  if (ctaBg) {
+    const r = ctaBg.parentElement.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      ctaBg.style.transform = 'translateY(' + (s * 0.15) + 'px)';
+    }
+  }
+});
+
+// --- SCROLL ANIMATIONS (Intersection Observer) ---
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Counter animation
+      e.target.querySelectorAll('.stat-number[data-target]').forEach(c => {
+        const t = parseInt(c.getAttribute('data-target'));
+        const d = 2000, step = t / (d / 16);
+        let cur = 0;
+        const up = () => {
+          cur += step;
+          if (cur < t) { c.textContent = Math.floor(cur) + '+'; requestAnimationFrame(up); }
+          else { c.textContent = t + '+'; }
+        };
+        up(); c.removeAttribute('data-target');
+      });
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.aos').forEach(el => io.observe(el));
+
+// --- FLOATING CTA ---
+const fcta = document.getElementById('floatingCta');
+window.addEventListener('scroll', () => {
+  fcta.classList.toggle('show', window.pageYOffset > 400);
+});
+
+// --- CARRUSEL ---
+(function(){
+  const track = document.getElementById('carouselTrack');
+  const dotsContainer = document.getElementById('carouselDots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if (!track) return;
+  const cards = track.children;
+  const total = cards.length;
+  let current = 0;
+  let startX = 0, isDragging = false;
+
+  // Create dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  }
+  const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+  function getCardWidth() {
+    return cards[0].offsetWidth + 24; // width + gap
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, total - 1));
+    track.style.transform = 'translateX(-' + (current * getCardWidth()) + 'px)';
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Touch / Swipe
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; });
+  track.addEventListener('touchmove', e => { if (!isDragging) return; e.preventDefault(); });
+  track.addEventListener('touchend', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+
+  // Mouse drag
+  track.addEventListener('mousedown', e => { startX = e.clientX; isDragging = true; });
+  track.addEventListener('mousemove', e => { if (isDragging) e.preventDefault(); });
+  track.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diff = startX - e.clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+  track.addEventListener('mouseleave', () => { isDragging = false; });
+
+  window.addEventListener('resize', () => goTo(current));
+})();
+</script>
+</body>
+</html>
